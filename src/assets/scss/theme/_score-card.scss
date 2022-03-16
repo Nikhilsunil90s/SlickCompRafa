@@ -1,0 +1,235 @@
+.score-card {
+    min-height: 100vh;
+    background: $black2;
+    padding: 1rem;
+    color: white;
+    overflow: hidden;
+
+    &.add {
+        min-height: 800px;
+    }
+
+    .winner-flag {
+        display: inline-flex;
+        background-color: #e7cf44;
+        color: #121005;
+        font-size: 1.25vw;
+        line-height: 1.2;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 10px 15px;
+        margin: 15px 0;
+    }
+
+    .action-holder {
+        background: #131415;
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+
+        &.final {
+            ul {
+                &:first-child {
+                    li {
+                        min-width: 100%;
+                        
+                        button {
+                            min-width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.alt {
+            background: transparent;
+            max-width: 25vw;
+
+            .inner-holder {
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    display: block;
+                    background: #2a2a2a;
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 1vw;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+    
+                ul {
+                    flex: 1;
+                    li {
+                        min-width: 50%;
+                        button {
+                            text-align: center;
+                            justify-content: center;
+                            min-width: 100%;
+                            font-size: 1.5vw;
+                        }
+                    }
+                }
+            }
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                display: inline-flex;
+
+                button {
+                    background: $black;
+                    border-radius: 0;
+                    border-color: $black;
+                    min-width: 5vw;
+                    box-shadow: none;
+                    padding: 8px;
+                    text-transform: uppercase;
+                    font-size: 1vw;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+
+                    &.btn-advantage {
+                        color: #78a575;
+                    }
+
+                    &.btn-penalty {
+                        color: #6d4948;
+                    }
+
+                    &.btn-grey {
+                        background: #3d3d3d;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .holder {
+        border: 3px solid $gray-1200;
+        border-radius: 5px;
+        padding: 0.5rem;
+        -webkit-box-shadow:inset 0 0 0 5px $black2;
+        box-shadow:inset 0 0 0 5px $black2;
+        min-height: 100%;
+        background: $gray-1300;
+    }
+
+    .country-info {
+        margin: 0 0.5vw 0 0;
+
+        .flag {
+            width: 4vw;
+
+            img {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+        .country-name {
+            font-weight: $font-weight-bold;
+            font-size: 2vw;
+        }
+    }
+
+    .user-info {
+        .user-name {
+            font-size: 3vw;
+            font-weight: $font-weight-bold;
+            line-height: 1;
+            color: $white;
+            margin: 0 0 2px;
+        }
+
+        .academy-name {
+            font-weight: $font-weight-bold;
+            font-size: 1.25vw;
+        }
+    }
+
+    .score-count {
+        .box {
+            .title {
+                font-size: 1.75vw;
+            }
+
+            .count {
+                font-size: 6vw;
+                font-weight: $font-weight-bold;
+                line-height: 1;
+            }
+        }
+    }
+    
+    .score-box {
+        color: $white;
+        font-size: 14vw;
+        font-weight: $font-weight-bold;
+        line-height: 1;
+        min-width: 20vw;
+        margin-left: 1vw;
+        padding: 1rem;
+    }
+
+    .header {
+        color: $white;
+        font-weight: $font-weight-bold;
+        padding: 3vh 0 0;
+        font-size: 2vw;
+
+        h5 {
+            color: $yellow2;
+            font-weight: $font-weight-bold;
+            font-size: 2.5vw;
+
+            small {
+                color: $gray-700;
+                font-size: map-get($font-sizes, '-1');
+            }
+        }
+    }
+
+    .timer {
+        font-size: 15vw;
+        font-weight: $font-weight-normal;
+        color: $yellow2;
+        line-height: 1;
+        padding: 0 1vw;
+    }
+
+}
+
+.modal-header {
+    font-size: 3vw;
+    line-height: 1;
+}
+
+.actionable-buttons {
+    display: flex;
+    padding: 20px;
+
+    li {
+        padding: 0 10px;
+    }
+
+    button {
+        font-size: 2.5vw;
+        line-height: 1;
+    }
+}

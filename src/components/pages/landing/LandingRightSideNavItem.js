@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Card,
   Modal,
@@ -19,6 +20,7 @@ const breakpoint = 'lg';
 const mapStateToProp = state => state.auth;
 const LandingRightSideNavItem = ({ loggedIn }) => {
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
+  const { t } = useTranslation();
   return (
     <Nav navbar className="ms-auto">
       {false && (
@@ -60,9 +62,12 @@ const LandingRightSideNavItem = ({ loggedIn }) => {
         </>
       )}
       {!loggedIn && (
-        <NavDropdown title="Login" align="end">
+        <NavDropdown
+          title={t('landingRightSideNavItems.loginTitle')}
+          align="end"
+        >
           <Card className="navbar-card-login shadow-none">
-            <Card.Body className="fs--1 fw-normal p-4">
+            <Card.Body className="fs--1 fw-normal p-3">
               <Login />
             </Card.Body>
           </Card>
@@ -71,7 +76,7 @@ const LandingRightSideNavItem = ({ loggedIn }) => {
       {loggedIn && (
         <Nav.Item>
           <Nav.Link as={Link} to="/dashboard/profile">
-            Dashboard
+            {t('landingRightSideNavItems.dashboardTitle')}
           </Nav.Link>
         </Nav.Item>
       )}

@@ -22,9 +22,20 @@ const ScoreCard = ({ match }) => {
   const timeRef = useRef();
   // eslint-disable-next-line no-unused-vars
   const [interval, setIntervalId] = useState(null);
+  const [isStopped, setStopped] = useState(false);
+  const stopped = useRef();
+  stopped.current = isStopped;
   const intervalRef = useRef();
   const [data, setData] = useState(null);
   const [matchAdmin] = useState(new MatchAdmin(match.params.matchid));
+  const onStop = time => {
+    setTime(time);
+    setStopped(true);
+  };
+  const onResume = time => {
+    setTime(time);
+    setStopped(false);
+  };
   const handlePointUpdate = (points, participant) => {
     if (participant === 1) {
       setP1score(score => {
@@ -76,11 +87,15 @@ const ScoreCard = ({ match }) => {
   const handleConnection = (data, connectionId) => {
     console.log(data, connectionId);
     putMatch(data, match.params.connectionId, connectionId);
+    matchAdmin.ready();
   };
   const onStart = () => {
     setIntervalId(
       setInterval(() => {
         console.log(timeRef.current);
+        if (stopped.current) {
+          return;
+        }
         if (timeRef.current === 0) {
           clearInterval(intervalRef.current);
           return;
@@ -131,6 +146,8 @@ const ScoreCard = ({ match }) => {
       matchAdmin.onPenaltyUpdate(handlePenaltyUpdate);
       matchAdmin.onTimerUpdate(handleTimerUpdate);
       matchAdmin.onStart(onStart);
+      matchAdmin.onStop(onStop);
+      matchAdmin.onResume(onResume);
       matchAdmin.onEnd(() => setTime(0));
       matchAdmin.onWin(onWin);
       matchAdmin.onClose(window.close);

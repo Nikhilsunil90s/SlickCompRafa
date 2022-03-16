@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "",
+    "paths": {
+      "api/*": ["./src/api/*"],
+      "dux/*": ["./src/dux/*"],
+      "components/*": ["./src/components/*"],
+      "assets/*": ["./src/assets/*"],
+      "config": ["./src/config.js"],
+      "context": ["./src/context"]
+    }
+  }
+}

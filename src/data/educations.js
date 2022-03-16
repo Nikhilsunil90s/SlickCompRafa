@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import logoStanford from 'assets/img/logos/stanford.png';
 import logoStaten from 'assets/img/logos/staten.png';
 import logoTjHeighSchool from 'assets/img/logos/tj-heigh-school.png';

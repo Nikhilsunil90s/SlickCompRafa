@@ -7,7 +7,9 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
+    "react-app",
+    "react-app/jest"
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -18,6 +20,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'jsx-a11y/anchor-is-valid': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'react/no-unescaped-entities': 'off',
     'react/prop-types': 'error',
     'react/display-name': 'off',

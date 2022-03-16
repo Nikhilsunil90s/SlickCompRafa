@@ -5,6 +5,7 @@
 .avatar {
   position: relative;
   display: inline-block;
+  vertical-align: top;
   .avatar-name {
     background-color: var(--#{$variable-prefix}avatar-name-bg);
     position: absolute;

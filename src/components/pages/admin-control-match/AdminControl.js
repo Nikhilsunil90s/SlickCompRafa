@@ -1,16 +1,23 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const AdminControl = ({
   proceedTimer,
   penalizeTimer,
   isStarted,
+  isReady,
   onStart,
   onEnd,
   isEnded,
-  onBack
+  onBack,
+  isStopped,
+  onStop,
+  onResume
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="action-holder">
       <ul className="list-unstyled">
@@ -47,13 +54,27 @@ const AdminControl = ({
         {false && (
           <>
             <li>
-              <Button type="button">UNDO scoring action</Button>
+              <Button type="button">
+                {t('adminControlMatch.adminControl.buttonText1')}
+              </Button>
             </li>
             <li>
-              <Button type="button">switch sides</Button>
+              <Button type="button">
+                {t('adminControlMatch.adminControl.buttonText2')}
+              </Button>
             </li>
           </>
         )}
+        <li>
+          {isStarted && (
+            <Button
+              type="button"
+              onClick={() => (isStopped ? onResume() : onStop())}
+            >
+              {isStopped ? 'resume game' : 'pause game'}
+            </Button>
+          )}
+        </li>
       </ul>
       <ul className="list-unstyled">
         <li>
@@ -89,10 +110,14 @@ const AdminControl = ({
         {false && (
           <>
             <li>
-              <Button type="button">back to bucket</Button>
+              <Button type="button">
+                {t('adminControlMatch.adminControl.buttonText3')}
+              </Button>
             </li>
             <li>
-              <Button type="button">back to fightorder</Button>
+              <Button type="button">
+                {t('adminControlMatch.adminControl.buttonText4')}
+              </Button>
             </li>
           </>
         )}
@@ -100,14 +125,17 @@ const AdminControl = ({
           {!isEnded && (
             <Button
               type="button"
+              disabled={!isReady}
               onClick={() => (isStarted ? onEnd() : onStart())}
             >
-              {isStarted ? 'end game' : 'start game'}
+              {isStarted
+                ? t('adminControlMatch.adminControl.buttonText5b')
+                : t('adminControlMatch.adminControl.buttonText5a')}
             </Button>
           )}
           {isEnded && (
             <Button type="button" className="btn-grey" onClick={() => onBack()}>
-              Back
+              {t('adminControlMatch.adminControl.buttonText6')}
             </Button>
           )}
         </li>

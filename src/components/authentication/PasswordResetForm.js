@@ -1,28 +1,63 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { Button, Form } from 'react-bootstrap';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import changePassword from 'api/auth/change-password';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 const PasswordResetForm = ({ hasLabel }) => {
-  // State
-  const [formData, setFormData] = useState({
-    password: '',
-    confirmPassword: ''
+  const { t } = useTranslation();
+  let schema = yup.object().shape({
+    password: yup
+      .string()
+      .required(`${t('forgetPassword.passwordRequired')}`)
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+        `${t('forgetPassword.passwordLimit')}`
+      ),
+    confirmPassword: yup
+      .string()
+      .oneOf(
+        [yup.ref('password'), null],
+        `${t('forgetPassword.passwordMatch')}`
+      )
   });
 
-  // Handler
-  const handleSubmit = e => {
-    e.preventDefault();
-    toast.success('Login with your new password');
-  };
+  // State
+  const { uuid, md5 } = useParams();
+  const formik = useFormik({
+    initialValues: {
+      password: '',
+      confirmPassword: ''
+    },
+    validationSchema: schema,
+    onSubmit: async values => {
+      try {
+        await changePassword(uuid, md5, values.password, false);
+        toast.success(`${t('forgetPassword.newPasswordSuccessMessage')}`, {
+          autoClose: 1500,
+          pauseOnFocusLoss: false,
+          pauseOnHover: false,
+          onOpen: () => setTimeout(() => (window.location.href = '/'), 1500),
+          onClick: () => (window.location.href = '/')
+        });
+      } catch (e) {
+        toast.error(`${t('forgetPassword.newPasswordErroMessage')}`, {
+          autoClose: 1000,
+          pauseOnFocusLoss: false,
+          pauseOnHover: false,
+          onOpen: () =>
+            setTimeout(() => (window.location.href = '/forgot-password'), 1000)
+        });
+      }
+    }
+  });
 
-  const handleFieldChange = e => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const { errors, touched, handleSubmit, getFieldProps } = formik;
 
   return (
     <Form
@@ -30,33 +65,36 @@ const PasswordResetForm = ({ hasLabel }) => {
       onSubmit={handleSubmit}
     >
       <Form.Group className="mb-3">
-        {hasLabel && <Form.Label>New Password</Form.Label>}
+        {hasLabel && <Form.Label>{t('forgetPassword.newPassword')}</Form.Label>}
         <Form.Control
-          placeholder={!hasLabel ? 'New Password' : ''}
-          value={formData.password}
+          placeholder={!hasLabel ? `${t('forgetPassword.newPassword')}` : ''}
+          {...getFieldProps('password')}
           name="password"
-          onChange={handleFieldChange}
           type="password"
+          isInvalid={Boolean(touched.password && errors.password)}
         />
+        <Form.Text className="text-danger">
+          {touched.password && errors.password}
+        </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3">
-        {hasLabel && <Form.Label>Confirm Password</Form.Label>}
+        {hasLabel && (
+          <Form.Label>{t('forgetPassword.confirmPassword')}</Form.Label>
+        )}
         <Form.Control
-          placeholder={!hasLabel ? 'Confirm Password' : ''}
-          value={formData.confirmPassword}
+          placeholder={!hasLabel ? `${t('forgetPassword.newPassword')}` : ''}
+          {...getFieldProps('confirmPassword')}
           name="confirmPassword"
-          onChange={handleFieldChange}
           type="password"
+          isInvalid={Boolean(touched.confirmPassword && errors.confirmPassword)}
         />
+        <Form.Text className="text-danger">
+          {touched.confirmPassword && errors.confirmPassword}
+        </Form.Text>
       </Form.Group>
-
-      <Button
-        type="submit"
-        className="w-100"
-        disabled={!formData.password || !formData.confirmPassword}
-      >
-        Set password
+      <Button type="submit" className="w-100">
+        {t('forgetPassword.setPassword')}
       </Button>
     </Form>
   );

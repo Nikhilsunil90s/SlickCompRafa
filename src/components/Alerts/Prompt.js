@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+
 const Prompt = ({ prompt, onYes, onNo }) => {
+  const { t } = useTranslation();
+
   const [show, setShow] = useState(true);
 
   return (
@@ -16,7 +20,7 @@ const Prompt = ({ prompt, onYes, onNo }) => {
               onYes();
             }}
           >
-            Yes
+            {t('adminControlMatch.scoreCard.promptYes')}
           </Button>
         </li>
         <li>
@@ -27,7 +31,7 @@ const Prompt = ({ prompt, onYes, onNo }) => {
               onNo();
             }}
           >
-            No
+            {t('adminControlMatch.scoreCard.promptNo')}
           </Button>
         </li>
       </ul>

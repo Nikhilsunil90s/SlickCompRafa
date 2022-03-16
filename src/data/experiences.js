@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import logoG from 'assets/img/logos/g.png';
 import logoApple from 'assets/img/logos/apple.png';
 import logoNike from 'assets/img/logos/nike.png';

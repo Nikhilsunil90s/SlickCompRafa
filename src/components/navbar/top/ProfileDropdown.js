@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import team3 from 'assets/img/team/3.jpg';
 import Avatar from 'components/common/Avatar';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const ProfileDropdown = () => {
-  // const handleLogout = () => {
-  //   window.localStorage.clear();
-  //   window.location.href = `/`;
-  // };
+  const avatar = useSelector(state => state.auth.avatar);
+  const { t } = useTranslation();
   return (
     <Dropdown navbar={true} as="li">
       <Dropdown.Toggle
@@ -18,7 +18,7 @@ const ProfileDropdown = () => {
         to="#!"
         className="pe-0 nav-link"
       >
-        <Avatar src={team3} />
+        <Avatar src={avatar || team3} />
       </Dropdown.Toggle>
 
       <Dropdown.Menu className="dropdown-menu-card  dropdown-menu-end">
@@ -42,7 +42,7 @@ const ProfileDropdown = () => {
             </>
           )}
           <Dropdown.Item as={Link} to="/logout">
-            Logout
+            {t('logoutText')}
           </Dropdown.Item>
         </div>
       </Dropdown.Menu>

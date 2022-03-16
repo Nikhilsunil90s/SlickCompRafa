@@ -1,13 +1,17 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 import Matches from 'components/dashboards/matches';
 import Users from 'components/dashboards/users';
+import User from 'components/dashboards/user';
 import CreateMatch from 'components/dashboards/create-match/CreateMatch';
 import UserInvite from 'components/dashboards/invite-user/UserInvite';
 import MatchResult from 'components/dashboards/match-result';
-import ProtectedRoute from 'ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute';
 import Profile from 'components/dashboards/academy/profile';
+import UserProfile from 'components/dashboards/user/profile';
+import Edit from 'components/dashboards/user/edit';
 
 const MainRoutes = () => (
   <Switch>
@@ -114,6 +118,13 @@ const MainRoutes = () => (
       component={CreateMatch}
     />
     <ProtectedRoute path="/dashboard/users" exact component={Users} />
+    <ProtectedRoute path="/dashboard/:isAcademy/edit" exact component={Edit} />
+    <ProtectedRoute path="/dashboard/user/edit/:uuid" exact component={Edit} />
+    <ProtectedRoute
+      path="/dashboard/user/view/:uuid"
+      exact
+      component={UserProfile}
+    />
     <ProtectedRoute
       path="/dashboard/match-result/:academyId/:matchid"
       exact

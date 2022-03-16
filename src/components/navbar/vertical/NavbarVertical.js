@@ -13,6 +13,7 @@ import { academyRoutes, fighterRoutes } from 'routes/routes';
 import { capitalize } from 'helpers/utils';
 import NavbarTopDropDownMenus from 'components/navbar/top/NavbarTopDropDownMenus';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const NavbarVertical = () => {
   const isAcademy = useSelector(state => state.auth.isAcademy);
@@ -25,6 +26,7 @@ const NavbarVertical = () => {
     }
   } = useContext(AppContext);
 
+  const { t } = useTranslation();
   const HTMLClassList = document.getElementsByTagName('html')[0].classList;
   const { pathname } = useLocation();
 
@@ -61,7 +63,9 @@ const NavbarVertical = () => {
       </Col>
     </Row>
   );
-  const route = isAcademy ? academyRoutes : fighterRoutes;
+  const route = isAcademy
+    ? t('academyDashboardMenuItems', { returnObjects: true })
+    : t('fighterDashboardMenuItems', { returnObjects: true });
 
   return (
     <Navbar
@@ -79,7 +83,7 @@ const NavbarVertical = () => {
         in={showBurgerMenu}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        expanded={true}
+        expanded="true"
       >
         <div className="navbar-vertical-content scrollbar">
           <Nav className="flex-column" as="ul">

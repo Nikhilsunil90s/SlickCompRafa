@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import logoutImg from 'assets/img/icons/spot-illustrations/45.png';
+import { useTranslation } from 'react-i18next';
 
 const LogoutContent = ({ titleTag: TitleTag }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <img
@@ -12,10 +15,10 @@ const LogoutContent = ({ titleTag: TitleTag }) => {
         alt="shield"
         width={100}
       />
-      <TitleTag>See you again!</TitleTag>
+      <TitleTag>{t('logoutContent.title')}</TitleTag>
       <p>
-        Thanks for using SlickComp. You are <br className="d-none d-sm-block" />
-        now successfully signed out.
+        {t('logoutContent.content1')} <br className="d-none d-sm-block" />
+        {t('logoutContent.content2')}
       </p>
       <Button
         color="primary"
@@ -23,7 +26,7 @@ const LogoutContent = ({ titleTag: TitleTag }) => {
         className="mt-3"
         onClick={() => (window.location.href = '/')}
       >
-        Go to the main page
+        {t('logoutContent.button')}
       </Button>
     </>
   );

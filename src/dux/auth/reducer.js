@@ -11,7 +11,10 @@ const authReducer = (state = INITIAL_STATE, action) => {
         loggedIn: true,
         token: action.token,
         academyId: action.academyId,
-        isAcademy: action.isAcademy
+        userId: action.userId,
+        uuid: action.uuid,
+        isAcademy: action.isAcademy,
+        avatar: action.avatar
       };
     }
     case ACTION_TYPE.LOGIN_FAILED:

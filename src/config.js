@@ -10,7 +10,9 @@ export const settings = {
   showBurgerMenu: false, // controls showing vertical nav on mobile
   currency: '$',
   isNavbarVerticalCollapsed: false, // toggle vertical navbar collapse
-  navbarStyle: 'transparent'
+  navbarStyle: 'transparent',
+  locale: localStorage.getItem('i18nextLng')
 };
 
-export default { version, navbarBreakPoint, topNavbarBreakpoint, settings };
+const config = { version, navbarBreakPoint, topNavbarBreakpoint, settings };
+export default config;

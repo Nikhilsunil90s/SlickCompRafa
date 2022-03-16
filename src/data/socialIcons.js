@@ -10,7 +10,8 @@ export const bgWhiteIcons = [
   { icon: ['fab', 'linkedin-in'], color: 'linkedin', bg: 'white', href: '#!' },
   { icon: ['fab', 'medium-m'], color: '700', bg: 'white', href: '#!' }
 ];
-export default [
+
+const socialcons = [
   { icon: ['fab', 'facebook-f'], color: 'facebook', href: '#!' },
   { icon: ['fab', 'twitter'], color: 'twitter', href: '#!' },
   {
@@ -21,3 +22,5 @@ export default [
   { icon: ['fab', 'linkedin-in'], color: 'linkedin', href: '#!' },
   { icon: ['fab', 'medium-m'], color: '700', href: '#!' }
 ];
+
+export default socialcons;

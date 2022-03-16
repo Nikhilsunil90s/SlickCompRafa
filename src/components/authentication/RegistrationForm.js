@@ -41,9 +41,7 @@ const RegistrationForm = ({ hasLabel, academyId }) => {
         setIsSubmitting(false);
         toast.error(
           <>
-            <strong>User can't be created!</strong>
-            {/* <br /> */}
-            {/* <span style={{ color: 'orange' }}>{e.message}</span> */}
+            <strong>{e.message}</strong>
           </>,
           {
             autoClose: 2000

@@ -5,30 +5,63 @@ import AdvanceTableFooter from 'components/common/advance-table/AdvanceTableFoot
 import AdvanceTableWrapper from 'components/common/advance-table/AdvanceTableWrapper';
 import { getUsers } from 'api/user';
 import { connect } from 'react-redux';
-
-const columns = [
-  {
-    accessor: 'id',
-    Header: 'User Id'
-  },
-  {
-    accessor: 'name',
-    Header: 'Name'
-  },
-  {
-    accessor: 'email',
-    Header: 'Email'
-  },
-  {
-    accessor: 'country',
-    Header: 'Country'
-  }
-];
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTranslation } from 'react-i18next';
+import ReactCountryFlag from 'react-country-flag';
 
 const mapStateToProp = state => ({
   academyId: state.auth.academyId
 });
 const Users = ({ academyId }) => {
+  const { t } = useTranslation();
+  const columns = [
+    {
+      accessor: 'id',
+      Header: t('usersColumns.column1')
+    },
+    {
+      accessor: 'name',
+      Header: t('usersColumns.column2')
+    },
+    {
+      accessor: 'email',
+      Header: t('usersColumns.column3')
+    },
+    {
+      accessor: 'country',
+      Header: t('usersColumns.column4'),
+      Cell: rowData => {
+        const { country } = rowData.row.original;
+        return (
+          <div className="d-flex">
+            <ReactCountryFlag
+              countryCode={country}
+              style={{ width: '25px', height: 'auto' }}
+              svg
+            />
+          </div>
+        );
+      }
+    },
+    {
+      accessor: 'action',
+      Header: t('matchesColumns.column5'),
+      Cell: rowData => {
+        const { uuid } = rowData.row.original;
+        return (
+          <div className="d-flex">
+            <Link className="btn-view" to={`/dashboard/user/view/${uuid}`}>
+              <FontAwesomeIcon icon={['fas', 'eye']} />
+            </Link>
+            {/* <Link className="btn-view" to={`/dashboard/user/edit/${uuid}`}> */}
+            {/*   <FontAwesomeIcon icon={['fas', 'pencil-alt']} /> */}
+            {/* </Link> */}
+          </div>
+        );
+      }
+    }
+  ];
   const [data, setData] = useState([]);
   useEffect(() => {
     (async () => {
@@ -43,7 +76,7 @@ const Users = ({ academyId }) => {
         data={data || []}
         sortable
         pagination
-        perPage={5}
+        perPage={10}
       >
         <AdvanceTable
           table

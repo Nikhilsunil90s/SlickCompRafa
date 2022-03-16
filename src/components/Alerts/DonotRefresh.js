@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Alert, Modal } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+
 const DonotRefresh = () => {
   const [show, setShow] = useState(true);
+  const { t } = useTranslation();
+
   return (
     <Modal show={show} onHide={() => setShow(false)} contentClassName="border">
       <Alert
@@ -10,10 +14,8 @@ const DonotRefresh = () => {
         onClose={() => setShow(false)}
         dismissible
       >
-        <Alert.Heading>
-          Don't Refresh the Page or all the data will be Lost{' '}
-        </Alert.Heading>
-        <p>While the match is running, make sure you don't refresh the page</p>
+        <Alert.Heading>{t('dontRefreshPopUp.head1')} </Alert.Heading>
+        <p>{t('dontRefreshPopUp.head2')}</p>
       </Alert>
     </Modal>
   );

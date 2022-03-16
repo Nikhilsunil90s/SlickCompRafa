@@ -88,3 +88,23 @@
     box-shadow: var(--#{$variable-prefix}card-span-img-hover-box-shadow);
   }
 }
+
+.language-holder {
+  .navbar-nav {
+    display: none !important;
+  }
+  
+  @include media-breakpoint-down(lg) {
+    min-width: 70px;
+
+    .navbar-nav {
+      display: block !important;
+    }
+
+    .dropdown-menu {
+      position: absolute !important;
+      left: auto !important;
+      right: 0 !important;
+    }
+  }
+}

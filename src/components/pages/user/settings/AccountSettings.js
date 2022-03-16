@@ -49,6 +49,7 @@ const AccountSettings = () => {
               value="everyone"
               name="viewProfile"
               onChange={handleChange}
+              disabled
               checked={formData.viewProfile === 'everyone'}
             />
             <Form.Check
@@ -58,6 +59,7 @@ const AccountSettings = () => {
               className="form-label-nogutter"
               value="my-followers"
               name="viewProfile"
+              disabled
               onChange={handleChange}
               checked={formData.viewProfile === 'my-followers'}
             />
@@ -68,6 +70,7 @@ const AccountSettings = () => {
               className="form-label-nogutter"
               value="only-me"
               name="viewProfile"
+              disabled
               onChange={handleChange}
               checked={formData.viewProfile === 'only-me'}
             />
@@ -90,6 +93,7 @@ const AccountSettings = () => {
               className="form-label-nogutter"
               value="everyone"
               name="tagSettings"
+              disabled
               onChange={handleChange}
               checked={formData.tagSettings === 'everyone'}
             />
@@ -100,6 +104,7 @@ const AccountSettings = () => {
               className="form-label-nogutter"
               value="group-members"
               name="tagSettings"
+              disabled
               onChange={handleChange}
               checked={formData.tagSettings === 'group-members'}
             />
@@ -115,6 +120,7 @@ const AccountSettings = () => {
             label="Allow users to show your followers"
             className="form-label-nogutter"
             name="showFollowers"
+            disabled
             onChange={handleChange}
             checked={formData.showFollowers}
           />
@@ -124,6 +130,7 @@ const AccountSettings = () => {
             label="Allow users to show your email"
             className="form-label-nogutter"
             name="showEmail"
+            disabled
             onChange={handleChange}
             checked={formData.showEmail}
           />
@@ -133,6 +140,7 @@ const AccountSettings = () => {
             label="Allow users to show your experiences"
             className="form-label-nogutter"
             name="showExperience"
+            disabled
             onChange={handleChange}
             checked={formData.showExperience}
           />
@@ -147,6 +155,7 @@ const AccountSettings = () => {
             label="Make your phone number visible"
             className="form-label-nogutter"
             name="numberVisibility"
+            disabled
             onChange={handleChange}
             checked={formData.numberVisibility}
           />
@@ -156,6 +165,7 @@ const AccountSettings = () => {
             label="Allow user to follow you"
             className="form-label-nogutter"
             name="allowFollow"
+            disabled
             onChange={handleChange}
             checked={formData.allowFollow}
           />

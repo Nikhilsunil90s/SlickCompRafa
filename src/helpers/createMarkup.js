@@ -1,1 +1,3 @@
-export default html => ({ __html: html });
+const createMarkup = html => ({ __html: html });
+
+export default createMarkup;

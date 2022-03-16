@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Flex from '../Flex';
+import { useTranslation } from 'react-i18next';
 
 export const AdvanceTableFooter = ({
   page,
@@ -20,6 +21,8 @@ export const AdvanceTableFooter = ({
   rowsPerPageOptions = [5, 10, 15],
   className
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Flex
       className={classNames(
@@ -31,14 +34,15 @@ export const AdvanceTableFooter = ({
         {rowInfo && (
           <p className="mb-0">
             <span className="d-none d-sm-inline-block me-2">
-              {pageSize * pageIndex + 1} to {pageSize * pageIndex + page.length}{' '}
-              of {rowCount}
+              {pageSize * pageIndex + 1} {t('tableFooterText.to')}{' '}
+              {pageSize * pageIndex + page.length} {t('tableFooterText.of')}{' '}
+              {rowCount}
             </span>
           </p>
         )}
         {rowsPerPageSelection && (
           <>
-            <p className="mb-0 mx-2">Rows per page:</p>
+            <p className="mb-0 mx-2">{t('tableFooterText.pagination')}</p>
             <Form.Select
               size="sm"
               className="w-auto"
@@ -62,7 +66,7 @@ export const AdvanceTableFooter = ({
             onClick={() => previousPage()}
             className={classNames({ disabled: !canPreviousPage })}
           >
-            Previous
+            {t('tableFooterText.previous')}
           </Button>
           <Button
             size="sm"
@@ -72,7 +76,7 @@ export const AdvanceTableFooter = ({
             })}
             onClick={() => nextPage()}
           >
-            Next
+            {t('tableFooterText.next')}
           </Button>
         </Flex>
       )}

@@ -7,9 +7,9 @@ import IconGroup from 'components/common/icon/IconGroup';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { blogPostList, menuList1, menuList2 } from 'data/footer';
 import { bgWhiteIcons } from 'data/socialIcons';
 import { version } from 'config';
+import { useTranslation } from 'react-i18next';
 
 const FooterTitle = ({ children }) => (
   <h5 className="text-uppercase text-white opacity-85 mb-3">{children}</h5>
@@ -41,7 +41,7 @@ const FooterBlogList = ({ list }) => (
           </Link>
         </h5>
         <p className="text-600 opacity-50">
-          {blog.date} &bull; {blog.read} read{' '}
+          {blog.date} &bull; {blog.read}{' '}
           {blog.star && (
             <span dangerouslySetInnerHTML={createMarkup('&starf;')} />
           )}
@@ -61,6 +61,7 @@ const FooterStandard = () => {
       behavior: 'smooth'
     });
   };
+  const { t } = useTranslation();
   return (
     <>
       <Section bg="dark" className="pt-8 pb-4 light">
@@ -76,14 +77,27 @@ const FooterStandard = () => {
         </div>
         <Row>
           <Col lg={4}>
-            <FooterTitle>Our Mission</FooterTitle>
-            <p className="text-600">
-              SLICKCOMP mission is to provide a complete and easy to use
-              mechanism to your competition.
-            </p>
+            <FooterTitle>{t('footerTitles.title1')}</FooterTitle>
+            <p className="text-600">{t('footerNote')}</p>
             <IconGroup className="mt-4" icons={bgWhiteIcons} />
           </Col>
           <Col className="ps-lg-6 ps-xl-8">
+            {/* <Row className="mt-5 mt-lg-0">
+              <Col xs={6} md={3}>
+                <FooterTitle>{t('footerTitles.title2')}</FooterTitle>
+                <FooterList list={t('menuList1', { returnObjects: true })} />
+              </Col>
+              <Col xs={6} md={3}>
+                <FooterTitle>{t('footerTitles.title3')}</FooterTitle>
+                <FooterList list={t('menuList2', { returnObjects: true })} />
+              </Col>
+              <Col className="mt-5 mt-md-0">
+                <FooterTitle>{t('footerTitles.title4')}</FooterTitle>
+                <FooterBlogList
+                  list={t('blogPostList', { returnObjects: true })}
+                />
+              </Col>
+            </Row> */}
             {/*<Row className="mt-5 mt-lg-0">*/}
             {/*  <Col xs={6} md={3}>*/}
             {/*    <FooterTitle>Company</FooterTitle>*/}
@@ -108,7 +122,7 @@ const FooterStandard = () => {
           <Row className="justify-content-between">
             <Col xs={12} sm="auto">
               <p className="mb-0 text-600">
-                Thank you for visiting SLICKCOMP{' '}
+                {t('footerEnd')}{' '}
                 <span className="d-none d-sm-inline-block">| </span>
                 <br className="d-sm-none" /> {new Date().getFullYear()} &copy;{' '}
                 <a

@@ -1,21 +1,26 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const ParticipantMatchResult = ({ declareWinner }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="action-holder alt">
       <div className="inner-holder">
-        <strong className="title">won by:</strong>
+        <strong className="title">
+          {t('adminControlMatch.participantMatchResult.title')}
+        </strong>
         <ul className="list-unstyled">
           <li>
             <Button type="button" onClick={() => declareWinner('points')}>
-              points
+              {t('adminControlMatch.participantMatchResult.buttonText1')}
             </Button>
           </li>
           <li>
             <Button type="button" onClick={() => declareWinner('submission')}>
-              submission
+              {t('adminControlMatch.participantMatchResult.buttonText2')}
             </Button>
           </li>
         </ul>
@@ -26,17 +31,17 @@ const ParticipantMatchResult = ({ declareWinner }) => {
             type="button"
             onClick={() => declareWinner('disqualification')}
           >
-            disqualification
+            {t('adminControlMatch.participantMatchResult.buttonText3')}
           </Button>
         </li>
         <li>
           <Button type="button" onClick={() => declareWinner('walkover')}>
-            walkover
+            {t('adminControlMatch.participantMatchResult.buttonText4')}
           </Button>
         </li>
         <li>
           <Button type="button" onClick={() => declareWinner('decision')}>
-            decision
+            {t('adminControlMatch.participantMatchResult.buttonText5')}
           </Button>
         </li>
       </ul>

@@ -22,3 +22,13 @@
         }
     }
 }
+
+.react-select__option{
+    background-color: white !important;
+    color: black !important;
+
+    &:hover {
+        background-color: #2c7be5;
+        color: white !important;
+    }
+}

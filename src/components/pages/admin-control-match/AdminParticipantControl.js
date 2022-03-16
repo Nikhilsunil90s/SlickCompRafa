@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const AdminParticipantControl = ({
   addPoints,
@@ -11,6 +12,7 @@ const AdminParticipantControl = ({
   depenalize,
   isStarted
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="action-holder">
       <ul className="list-unstyled">
@@ -76,7 +78,9 @@ const AdminParticipantControl = ({
         </li>
         {false && (
           <li>
-            <Button type="button">STALLING</Button>
+            <Button type="button">
+              {t('adminControlMatch.participantControl.buttonText')}
+            </Button>
           </li>
         )}
       </ul>

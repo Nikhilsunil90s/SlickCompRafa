@@ -11,7 +11,7 @@ import BillingSettings from './BillingSettings';
 import ChangePassword from './ChangePassword';
 import DangerZone from './DangerZone';
 
-const Settings = () => {
+const Settings = (uuid) => {
   return (
     <>
       <ProfileBanner>
@@ -27,14 +27,14 @@ const Settings = () => {
           <ExperiencesSettings />
           <EducationSettings />
         </Col>
-        <Col lg={4}>
-          <div className="sticky-sidebar">
-            <AccountSettings />
-            <BillingSettings />
-            <ChangePassword />
-            <DangerZone />
-          </div>
-        </Col>
+        {/* <Col lg={4}> */}
+        {/*   <div className="sticky-sidebar"> */}
+        {/*     <AccountSettings /> */}
+        {/*     <BillingSettings /> */}
+        {/*     <ChangePassword /> */}
+        {/*     <DangerZone /> */}
+        {/*   </div> */}
+        {/* </Col> */}
       </Row>
     </>
   );

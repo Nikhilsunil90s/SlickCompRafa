@@ -10,6 +10,10 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
+import Select from 'react-select';
+import { useTranslation } from 'react-i18next';
+import map from 'lodash/map';
+import range from 'lodash/range';
 
 let schema = yup.object().shape({
   academyId: yup.number().required(),
@@ -28,6 +32,7 @@ let schema = yup.object().shape({
 const mapStateToProp = state => ({
   academyId: state.auth.academyId
 });
+
 const CreateMatch = ({ hasLabel, academyId }) => {
   const [formData, setFormData] = useState({
     academyId: academyId,
@@ -37,14 +42,17 @@ const CreateMatch = ({ hasLabel, academyId }) => {
     matchGender: 'Male',
     giNogi: '1',
     weight: '80kg',
-    duration: '5:00',
+    duration: '300',
     seniority: 'Adult',
     matchDateTime: new Date(),
     matchTimeZone: ''
   });
 
+  const [creating, setCreating] = useState(false);
   const [participants, setParticipants] = useState([]);
   const [submitButton, setSubmitButton] = useState(false);
+  const [matchDateTime, setMatchDateTime] = useState(new Date());
+  const { t } = useTranslation();
 
   useEffect(() => {
     (async () => {
@@ -63,11 +71,16 @@ const CreateMatch = ({ hasLabel, academyId }) => {
       'YYYY-MM-DD hh:mm:ss'
     );
     try {
+      setCreating(true);
       await postMatch(formData);
-      toast.success(`Match Created`);
+      toast.success(t('createMatch.successToast'));
+      toast.dismiss();
       window.location.href = `/dashboard/matches/`;
+      setCreating(false);
     } catch (e) {
-      toast.success(`Match Creation Failed, try again`);
+      setCreating(false);
+      toast.error(t('createMatch.errorToast'));
+      toast.dismiss();
     }
   };
 
@@ -78,6 +91,7 @@ const CreateMatch = ({ hasLabel, academyId }) => {
       matchDateTime: date,
       matchTimeZone: timeZone
     };
+    setMatchDateTime(date);
     setSubmitButton(await schema.isValid(updatedData));
     setFormData(updatedData);
   };
@@ -91,53 +105,55 @@ const CreateMatch = ({ hasLabel, academyId }) => {
       ...formData,
       [e.target.name]: e.target.value
     };
-    setSubmitButton(await schema.isValid(updatedData));
     setFormData(updatedData);
+    setSubmitButton(await schema.isValid(updatedData));
+  };
+  const handleSelectChange = name => async value => {
+    const timeZone = new Date(formData.matchDateTime)
+      .toTimeString()
+      .slice(9, 17);
+    formData.matchTimeZone = timeZone;
+
+    const updatedData = {
+      ...formData,
+      [name]: value.value
+    };
+
+    setFormData(updatedData);
+    setSubmitButton(await schema.isValid(updatedData));
   };
 
   return (
     <Section bg="light" className="py-3 shadow-sm">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="participant1" className="mb-3">
-          {hasLabel && <Form.Label>Participant 1</Form.Label>}
-          <Form.Select
-            aria-label="participant1"
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel1')}</Form.Label>}
+          <Select
+            options={participants?.map(participant => ({
+              value: participant.id,
+              label: participant.name
+            }))}
+            placeholder={t('createMatch.fieldPlaceholder1')}
+            classNamePrefix="react-select"
+            onChange={handleSelectChange('participant1_id')}
             name="participant1_id"
-            onChange={handleFieldChange}
-            required
-          >
-            <option selected="" disabled="" defaultValue="">
-              Please Select Participant
-            </option>
-            {participants &&
-              participants.map(participant => (
-                <option value={participant.id} key={participant.id}>
-                  {participant.name}
-                </option>
-              ))}
-          </Form.Select>
+          />
         </Form.Group>
         <Form.Group controlId="participant2" className="mb-3">
-          {hasLabel && <Form.Label>Participant 2</Form.Label>}
-          <Form.Select
-            aria-label="participant2"
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel2')}</Form.Label>}
+          <Select
+            options={participants?.map(participant => ({
+              value: participant.id,
+              label: participant.name
+            }))}
+            placeholder={t('createMatch.fieldPlaceholder2')}
+            classNamePrefix="react-select"
+            onChange={handleSelectChange('participant2_id')}
             name="participant2_id"
-            onChange={handleFieldChange}
-            required
-          >
-            <option selected="" disabled="" defaultValue="">
-              Please Select Participant
-            </option>
-            {participants &&
-              participants.map(participant => (
-                <option value={participant.id} key={participant.id}>
-                  {participant.name}
-                </option>
-              ))}
-          </Form.Select>
+          />
         </Form.Group>
         <Form.Group controlId="matchType" className="mb-3">
-          {hasLabel && <Form.Label>Match Type</Form.Label>}
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel3')}</Form.Label>}
           <Form.Select
             aria-label="matchType"
             name="matchType"
@@ -145,15 +161,19 @@ const CreateMatch = ({ hasLabel, academyId }) => {
             required
           >
             <option selected value="Single Match">
-              Single Match
+              {t('createMatch.fieldMatchValue1')}
             </option>
-            <option value="Quarter Finals">Quarter Finals</option>
-            <option value="Semi Finals">Semi Finals</option>
-            <option value="Final">Final</option>
+            {/* <option value="Quarter Finals">
+              {t('createMatch.fieldMatchValue2')}
+            </option>
+            <option value="Semi Finals">
+              {t('createMatch.fieldMatchValue3')}
+            </option>
+            <option value="Final">{t('createMatch.fieldMatchValue4')}</option> */}
           </Form.Select>
         </Form.Group>
         <Form.Group controlId="matchGender" className="mb-3">
-          {hasLabel && <Form.Label>Match Gender</Form.Label>}
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel4')}</Form.Label>}
           <Form.Select
             aria-label="matchGender"
             name="matchGender"
@@ -161,13 +181,13 @@ const CreateMatch = ({ hasLabel, academyId }) => {
             required
           >
             <option selected value="Male">
-              Male
+              {t('createMatch.fieldGenderValue1')}
             </option>
-            <option value="Female">Female</option>
+            <option value="Female">{t('createMatch.fieldGenderValue2')}</option>
           </Form.Select>
         </Form.Group>
         <Form.Group controlId="seniority" className="mb-3">
-          {hasLabel && <Form.Label>Seniority</Form.Label>}
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel5')}</Form.Label>}
           <Form.Select
             aria-label="seniority"
             name="seniority"
@@ -175,7 +195,7 @@ const CreateMatch = ({ hasLabel, academyId }) => {
             required
           >
             <option selected value="Adult">
-              Adult
+              {t('createMatch.fieldSeniorityValue1')}
             </option>
           </Form.Select>
         </Form.Group>
@@ -194,37 +214,61 @@ const CreateMatch = ({ hasLabel, academyId }) => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
-          {hasLabel && <Form.Label>Weight</Form.Label>}
-          <Form.Control
-            placeholder={!hasLabel ? 'Weight' : ''}
-            value={formData.weight}
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel6')}</Form.Label>}
+          <Select
+            options={map(range(50, 121), val => {
+              return {
+                value: `${val}kg`,
+                label: `${val}kg`
+              };
+            })}
+            defaultValue={{ value: '80kg', label: '80kg' }}
+            placeholder={t('createMatch.fieldLabel6')}
+            classNamePrefix="react-select"
+            onChange={handleSelectChange('weight')}
             name="weight"
-            onChange={handleFieldChange}
-            required
-            type="text"
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          {hasLabel && <Form.Label>Duration</Form.Label>}
-          <Form.Control
-            placeholder={!hasLabel ? 'duration' : ''}
-            value={formData.duration}
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel7')}</Form.Label>}
+          <Select
+            options={[
+              { value: '180', label: '3:00' },
+              { value: '240', label: '4:00' },
+              { value: '300', label: '5:00' },
+              { value: '360', label: '6:00' },
+              { value: '420', label: '7:00' },
+              { value: '480', label: '8:00' },
+              { value: '540', label: '9:00' },
+              { value: '600', label: '10:00' },
+              { value: '660', label: '11:00' },
+              { value: '720', label: '12:00' },
+              { value: '780', label: '13:00' },
+              { value: '840', label: '14:00' },
+              { value: '900', label: '15:00' },
+              { value: '960', label: '16:00' },
+              { value: '1020', label: '17:00' },
+              { value: '1080', label: '18:00' },
+              { value: '1140', label: '19:00' },
+              { value: '1200', label: '20:00' }
+            ]}
+            defaultValue={{ label: '5:00', value: '300' }}
+            placeholder={t('createMatch.fieldPlaceholder7')}
+            classNamePrefix="react-select"
+            onChange={handleSelectChange('duration')}
             name="duration"
-            onChange={handleFieldChange}
-            required
-            type="text"
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="endDate">
-          {hasLabel && <Form.Label>Date</Form.Label>}
+          {hasLabel && <Form.Label>{t('createMatch.fieldLabel8')}</Form.Label>}
           <DatePicker
-            selected={formData.matchDateTime}
+            selected={matchDateTime}
             onChange={date => handleDateChange(date)}
             className="form-control"
-            placeholderText="YYYY-MM-DD H:M"
-            dateFormat="yyyy-MM-dd h:mm"
+            placeholderText="DD-MM-YYYY H:M"
+            dateFormat="dd-MM-yyyy h:mm"
             required
             showTimeSelect
             timeFormat="HH:mm"
@@ -237,9 +281,9 @@ const CreateMatch = ({ hasLabel, academyId }) => {
             color="primary"
             className="mt-3"
             size="lg"
-            disabled={!submitButton}
+            disabled={!submitButton || creating}
           >
-            Create Match
+            {t('createMatch.matchButton')}
           </Button>
         </Form.Group>
       </Form>

@@ -23,7 +23,7 @@ export default class MatchAdmin {
   onConnection(onMessageHandler) {
     this.wsp.onMessage.addListener(message => {
       const e = JSON.parse(message);
-      if (e.message == 'Connected') {
+      if (e.message === 'Connected') {
         onMessageHandler(e.connectionId);
         setTimeout(this.ping, 40 * 1000);
       }
@@ -106,10 +106,31 @@ export default class MatchAdmin {
       }
     });
   };
+  onReady = onReadyHandler => {
+    this.wsp.onUnpackedMessage.addListener(message => {
+      if (message.message && message.message.action === 'ready') {
+        onReadyHandler();
+      }
+    });
+  };
   onStart = onStartHandler => {
     this.wsp.onUnpackedMessage.addListener(message => {
       if (message.message && message.message.action === 'start') {
         onStartHandler();
+      }
+    });
+  };
+  onStop = onStopHandler => {
+    this.wsp.onUnpackedMessage.addListener(message => {
+      if (message.message && message.message.action === 'stop') {
+        onStopHandler(message.message.time);
+      }
+    });
+  };
+  onResume = onResumeHandler => {
+    this.wsp.onUnpackedMessage.addListener(message => {
+      if (message.message && message.message.action === 'resume') {
+        onResumeHandler(message.message.time);
       }
     });
   };
@@ -225,12 +246,41 @@ export default class MatchAdmin {
       }
     });
   };
+  ready = () => {
+    this.send({
+      action: 'sendMessage',
+      matchId: this.matchId,
+      message: {
+        action: 'ready'
+      }
+    });
+  };
   startMatch = () => {
     this.send({
       action: 'sendMessage',
       matchId: this.matchId,
       message: {
         action: 'start'
+      }
+    });
+  };
+  stopMatch = atTime => {
+    this.send({
+      action: 'sendMessage',
+      matchId: this.matchId,
+      message: {
+        action: 'stop',
+        time: atTime
+      }
+    });
+  };
+  resumeMatch = fromTime => {
+    this.send({
+      action: 'sendMessage',
+      matchId: this.matchId,
+      message: {
+        action: 'resume',
+        time: fromTime
       }
     });
   };

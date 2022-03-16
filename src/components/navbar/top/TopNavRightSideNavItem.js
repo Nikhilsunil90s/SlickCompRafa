@@ -4,12 +4,15 @@ import ProfileDropdown from 'components/navbar/top/ProfileDropdown';
 import NotificationDropdown from 'components/navbar/top/NotificationDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AppContext from 'context/Context';
+import LanguageBar from '../../../helpers/languageBar';
+import { useTranslation } from 'react-i18next';
 
 const TopNavRightSideNavItem = () => {
   const {
     config: { isDark },
     setConfig
   } = useContext(AppContext);
+  const { t } = useTranslation();
   return (
     <Nav
       navbar
@@ -25,7 +28,7 @@ const TopNavRightSideNavItem = () => {
           <OverlayTrigger
             overlay={
               <Tooltip id="hi">
-                {isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+                {isDark ? t('toolTipLight') : t('toolTipDark')}
               </Tooltip>
             }
             placement="left"
@@ -41,6 +44,7 @@ const TopNavRightSideNavItem = () => {
       </Nav.Item>
       {false && <NotificationDropdown />}
       <ProfileDropdown />
+      <LanguageBar />
     </Nav>
   );
 };

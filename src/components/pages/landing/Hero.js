@@ -1,18 +1,27 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Typed from 'react-typed';
 import { Link } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import bg1 from 'assets/img/generic/bg-1.jpg';
 import bjj_tournament from 'assets/img/generic/bjj.png';
 import Section from 'components/common/Section';
 import AppContext from 'context/Context';
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
   const {
     config: { isDark }
   } = useContext(AppContext);
+  const [adjectives, setAdjectives] = useState([]);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    localStorage.getItem('i18nextLng') === 'en' ||
+    localStorage.getItem('i18nextLng') === undefined ||
+    localStorage.getItem('i18nextLng') === 'en-GB'
+      ? setAdjectives(['organization', 'scoreboard', 'elegance', 'speed'])
+      : setAdjectives(['organización', 'marcador', 'elegancia', 'velocidad']);
+  }, [setAdjectives, localStorage.getItem('i18nextLng')]);
 
   return (
     <Section
@@ -36,23 +45,21 @@ const Hero = () => {
             <span className="me-2" role="img" aria-label="Gift">
               🎁
             </span>
-            Create your first event for free
+            {t('freeEventText')}
           </Button>
           <h1 className="text-white fw-light">
-            Bring
+            {t('heroMajorText.part1')}
             <Typed
-              strings={['organization', 'scoreboard', 'elegance', 'speed']}
+              strings={[...adjectives]}
               typeSpeed={40}
               backSpeed={50}
               className="fw-bold ps-2"
               loop
             />
             <br />
-            to your tournament
+            {t('heroMajorText.part2')}
           </h1>
-          <p className="lead text-white opacity-75">
-            THE WORLD'S BEST BJJ TOURNAMENT SOFTWARE FOR COMBAT SPORTS
-          </p>
+          <p className="lead text-white opacity-75">{t('heroText')}</p>
           <Button
             as={Link}
             variant="outline-light"
@@ -60,7 +67,7 @@ const Hero = () => {
             className="border-2 rounded-pill mt-4 fs-0 py-2"
             to="#!"
           >
-            Start creating your event
+            {t('heroBtn')}
             <FontAwesomeIcon icon="play" transform="shrink-6 down-1 right-5" />
           </Button>
         </Col>

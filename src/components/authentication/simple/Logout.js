@@ -1,11 +1,14 @@
 import React from 'react';
 import LogoutContent from 'components/authentication/LogoutContent';
+import { resetStore } from 'dux';
 
-const Logout = () => (
-  <div className="text-center">
-    {window.localStorage.clear()}
-    <LogoutContent />
-  </div>
-);
+const Logout = () => {
+  resetStore();
+  return (
+    <div className="text-center">
+      <LogoutContent />
+    </div>
+  );
+};
 
 export default Logout;

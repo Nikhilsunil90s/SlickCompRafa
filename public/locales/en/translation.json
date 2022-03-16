@@ -1,0 +1,412 @@
+{
+  "navbarTitle": "Language",
+  "freeEventText": "Create your first event for free",
+  "heroText": "THE WORLD'S BEST BJJ TOURNAMENT SOFTWARE FOR COMBAT SPORTS",
+  "heroBtn": "Start creating your event",
+  "heroMajorText": {
+    "part1": "Bring",
+    "part2": "to your Tournament"
+  },
+  "logoutText": "Logout",
+  "serviceSectionTitle": "Here's what's in it for you",
+  "serviceSectionSubTitle": "Things you will get right out of the box with SLICKCOMP.",
+  "serviceListMediaAlt1": "RUNNING SCHEDULE",
+  "serviceListTitle1": "RUNNING SCHEDULE",
+  "serviceDesc1": "STAY UPDATED ALL THE TIME.",
+  "forgetPassword": {
+    "sendResetLink": "Send reset link",
+    "forgotYourPassword": "Forgot your password",
+    "resetYourPassword": "Reset new password",
+    "emailLabel": "Enter your email and we'll send you a reset link.",
+    "emailInput": "Email address",
+    "successToastMessageBefore": "An email is sent to ",
+    "successToastMessageAfter": "with password reset link",
+    "failedToastMessageBefore": "Password Reset for ",
+    "failedToastMessageAfter": "failed",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "setPassword": "Set password",
+    "newPasswordSuccessMessage": "Login with your new password",
+    "newPasswordErroMessage": "Password reset failed, please try again",
+    "passwordRequired": "Password is required!",
+    "passwordMatch": "Passwords must match",
+    "passwordLimit": "Must Contain 8 Characters, One Uppercase, One Lowercase and One Number"
+  },
+  "services": [
+    {
+      "media": {
+        "path": "21",
+        "alt": "RUNNING SCHEDULE"
+      },
+      "title": "RUNNING SCHEDULE",
+      "description": "Stay updated all the time."
+    },
+    {
+      "media": {
+        "path": "22",
+        "alt": "BRACKET GENERATION"
+      },
+      "title": "BRACKET GENERATION",
+      "description": "We will generate that bracket for you."
+    },
+    {
+      "media": {
+        "path": "23",
+        "alt": "SCOREBOARD"
+      },
+      "title": "SCOREBOARD",
+      "description": "Scoreboards that actually work."
+    }
+  ],
+  "ctaMajor": "Join our community of competitors.",
+  "ctaBtn": "Start your tournament",
+  "footerTitles": {
+    "title1": "Our Mission",
+    "title2": "Company",
+    "title3": "Product",
+    "title4": "From The Blog"
+  },
+  "footerNote": "SLICKCOMP mission is to provide a complete and easy to use mechanism to your competition.",
+  "footerEnd": "Thank you for visiting SLICKCOMP",
+  "menuList1": [
+    {
+      "title": "About",
+      "to": "#!"
+    },
+    {
+      "title": "Contact",
+      "to": "#!"
+    },
+    {
+      "title": "Careers",
+      "to": "#!"
+    },
+    {
+      "title": "Blog",
+      "to": "#!"
+    },
+    {
+      "title": "Terms",
+      "to": "#!"
+    },
+    {
+      "title": "Privacy",
+      "to": "#!"
+    },
+    {
+      "title": "Imprint",
+      "to": "#!"
+    }
+  ],
+  "menuList2": [
+    {
+      "title": "Features",
+      "to": "#!"
+    },
+    {
+      "title": "Roadmap",
+      "to": "#!"
+    },
+    {
+      "title": "Changelog",
+      "to": "#!"
+    },
+    {
+      "title": "Pricing",
+      "to": "#!"
+    },
+    {
+      "title": "Docs",
+      "to": "#!"
+    },
+    {
+      "title": "System Status",
+      "to": "#!"
+    },
+    {
+      "title": "Agencies",
+      "to": "#!"
+    },
+    {
+      "title": "Enterprise",
+      "to": "#!"
+    }
+  ],
+  "blogPostList": [
+    {
+      "title": "Interactive graphs and charts",
+      "date": "Jan 15",
+      "read": "8 min read"
+    },
+    {
+      "title": "Lifetime free updates",
+      "date": "Jan 5",
+      "read": "3 min read",
+      "star": true
+    },
+    {
+      "title": "Merry Christmas From us",
+      "date": "Dec 25",
+      "read": "2 min read"
+    },
+    {
+      "title": "The New Falcon Theme",
+      "date": "Dec 23",
+      "read": "10 min read"
+    }
+  ],
+  "landingRightSideNavItems": {
+    "loginTitle": "Login",
+    "registerTitle": "Register",
+    "dashboardTitle": "Dashboard",
+    "tab1Item": "Academy",
+    "tab2Item": "Athlete"
+  },
+  "academyLoginForm": {
+    "fieldLabel1": "Email address",
+    "fieldLabel2": "Password",
+    "fieldCheckBox": "Remember Me",
+    "forgetPassword": "Forget Password ?",
+    "loginButton": "Log In",
+    "loginOptions": "or log in with"
+  },
+  "athleteLoginForm": {
+    "fieldLabel1": "Email address",
+    "fieldLabel2": "Password",
+    "fieldCheckBox": "Remember Me",
+    "forgetPassword": "Forget Password?",
+    "loginButton": "Log In",
+    "loginOptions": "or log in with"
+  },
+  "academyDashboardMenuItems": {
+    "label": "Dashboard",
+    "labelDisable": true,
+    "children": [
+      {
+        "name": "Menu",
+        "active": true,
+        "icon": "chart-pie",
+        "children": [
+          {
+            "name": "Profile",
+            "to": "/dashboard/profile",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Matches",
+            "to": "/dashboard/matches",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Create Match",
+            "to": "/dashboard/create-match",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Users",
+            "to": "/dashboard/users",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Invite User",
+            "to": "/dashboard/invite-user",
+            "exact": true,
+            "active": true
+          }
+        ]
+      }
+    ]
+  },
+  "fighterDashboardMenuItems": {
+    "label": "Dashboard",
+    "labelDisable": true,
+    "children": [
+      {
+        "name": "Menu",
+        "active": true,
+        "icon": "chart-pie",
+        "children": [
+          {
+            "name": "Profile",
+            "to": "/dashboard/profile",
+            "exact": true,
+            "active": true
+          }
+        ]
+      }
+    ]
+  },
+  "createMatch": {
+    "fieldLabel1": "Participant 1",
+    "fieldPlaceholder1": "Please Select Participant",
+    "fieldLabel2": "Participant 2",
+    "fieldPlaceholder2": "Please Select Participant",
+    "fieldLabel3": "Match Type",
+    "fieldMatchValue1": "Single Match",
+    "fieldMatchValue2": "Quarter Finals",
+    "fieldMatchValue3": "Semi Finals",
+    "fieldMatchValue4": "Final",
+    "fieldLabel4": "Gender",
+    "fieldGenderValue1": "Male",
+    "fieldGenderValue2": "Female",
+    "fieldLabel5": "Seniority",
+    "fieldSeniorityValue1": "Adult",
+    "fieldLabel6": "Weight",
+    "fieldLabel7": "Duration",
+    "fieldPlaceholder7": "Please Select Duration",
+    "fieldLabel8": "Date",
+    "matchButton": "Create Match",
+    "successToast": "Match Created",
+    "errorToast": "Match Creation Failed, Try Again"
+  },
+  "inviteUser": {
+    "heading": "Invite User",
+    "inviteFormLabel1": "Name",
+    "inviteFormPlaceholder1": "Name",
+    "inviteFormLabel2": "Email",
+    "inviteFormPlaceholder2": "Email",
+    "inviteFormLabel3": "Message",
+    "inviteFormPlaceholder3": "Enter your message here ...",
+    "inviteButton": "SEND",
+    "error1": "Name is Required!",
+    "error2": "Valid Email is Required!",
+    "error3": "Email is Required!",
+    "toastSuccess": "Invite Sent Successfully!",
+    "toastError": "Invite Failed, Try again."
+  },
+  "toolTipLight": "Switch To Light Theme",
+  "toolTipDark": "Switch To Dark Theme",
+  "matchesColumns": {
+    "column1": "Match Id",
+    "column2": "Participants",
+    "column3": "Details",
+    "column4": "Date",
+    "column5": "Action",
+    "action1": "See Results",
+    "action2": "Start"
+  },
+  "usersColumns": {
+    "column1": "User Id",
+    "column2": "Name",
+    "column3": "Email",
+    "column4": "Country"
+  },
+  "tableFooterText": {
+    "to": "to",
+    "of": "of",
+    "pagination": "Rows per page: ",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "logoutContent": {
+    "title": "See you again!",
+    "content1": "Thanks for using SlickComp. You are",
+    "content2": "now successfully signed out.",
+    "button": "Go to the main page"
+  },
+  "dontRefreshPopUp": {
+    "head1": "Don't Refresh the Page or all the data will be Lost",
+    "head2": "While the match is running, make sure you don't refresh the page"
+  },
+  "matchResults": {
+    "pageTitle": "Match Result",
+    "winner": "Winner",
+    "winnerBy": "Winner By",
+    "advantage": "Advantage",
+    "penalty": "Penalty",
+    "videosTitle": "Gallery",
+    "methods": {
+      "disqualificationeng": "Disqualification",
+      "pointseng": "Points"
+    },
+    "duration": "Duration",
+    "matchType": "Match Type",
+    "matchGender": "Gender",
+    "giNogi": "Gi / NoGi",
+    "seniority": "Seniority",
+    "weight": "Weight",
+    "endTime": "Match End Date"
+  },
+  "adminControlMatch": {
+    "adminControl": {
+      "buttonText1": "UNDO scoring action",
+      "buttonText2": "switch sides",
+      "buttonText3": "back to bucket",
+      "buttonText4": "back to fightorder",
+      "buttonText5a": "start game",
+      "buttonText5b": "end game",
+      "buttonText6": "Back"
+    },
+    "adminMatchResult": {
+      "buttonText1": "Save",
+      "buttonText2": "Back",
+      "buttonText3": "back to fightorder",
+      "buttonText4": "back to bucket"
+    },
+    "participantControl": {
+      "buttonText": "STALLING"
+    },
+    "participantMatchResult": {
+      "title": "Won By: ",
+      "buttonText1": "points",
+      "buttonText2": "submission",
+      "buttonText3": "disqualification",
+      "buttonText4": "walkover",
+      "buttonText5": "decision"
+    },
+    "participant": {
+      "winnerByText": "Winner by",
+      "advantageText": "Advantage",
+      "penaltyText": "Penalty"
+    },
+    "scoreCard": {
+      "promptText": "Do you want to save?",
+      "promptYes": "Yes",
+      "promptNo": "No"
+    }
+  },
+  "matchesHeader": {
+    "lastMatches": "Last matches",
+    "seeAll": "see all"
+  },
+  "profile": {
+    "memberSince": "Member since",
+    "age": "Age",
+    "belt": "Belt",
+    "weight": "Weight",
+    "academy": "Academy",
+    "complete": "Complete",
+    "editProfile": "Edit Profile",
+    "beltItems": {
+      "item1": "White",
+      "item2": "Blue",
+      "item3": "Purple",
+      "item4": "Brown",
+      "item5": "Black"
+    },
+    "academyForm": {
+      "successToast": "Academy Profile Updated Successfully.",
+      "errorToast": "Academy Profile Not Updated.",
+      "name": "Name",
+      "intro": "Introdution",
+      "instagram": "Instagram",
+      "buttonText": "Update"
+    },
+    "userForm": {
+      "successToast": "User Profile Updated Successfully.",
+      "errorToast": "User Profile Not Updated.",
+      "name": "Name",
+      "email": "Email",
+      "weight": "Weight",
+      "belt": "Belt",
+      "age": "Age",
+      "country": "Country Name",
+      "instagram": "Instagram",
+      "buttonText": "Update"
+    }
+  }
+}

@@ -30,7 +30,9 @@ const refreshAuthLogic = async failedRequest => {
     }
     throw Error('No refresh token');
   } catch (e) {
-    window.localStorage.clear();
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('persist:root');
+    window.localStorage.removeItem('refreshToken');
     toast.error('Please login again', {
       autoClose: 1500,
       pauseOnFocusLoss: false,

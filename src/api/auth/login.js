@@ -6,7 +6,6 @@ const login = async (username, password, isAcademy) => {
     password,
     isAcademy
   });
-  console.log(response);
   return response.data;
 };
 export default login;

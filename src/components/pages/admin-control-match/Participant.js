@@ -4,6 +4,7 @@ import { Col } from 'react-bootstrap';
 import ReactCountryFlag from 'react-country-flag';
 import AdminParticipantControl from './AdminParticipantControl';
 import ParticipantMatchResult from './ParticipantMatchResult';
+import { useTranslation } from 'react-i18next';
 
 const Participant = ({
   participantData,
@@ -13,12 +14,16 @@ const Participant = ({
   isWon,
   ...rest
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Col xs="auto d-flex align-items-center flex-1">
         <div className="align-items-start d-flex flex-column">
           {scores.winner && (
-            <strong className="winner-flag">Winner by {scores.by}</strong>
+            <strong className="winner-flag">
+              {t('adminControlMatch.participant.winnerByText')} {scores.by}
+            </strong>
           )}
           <div className="d-flex">
             <div className="country-info d-flex flex-column">
@@ -46,11 +51,15 @@ const Participant = ({
       <Col xs="auto" className="justify-content-end d-flex p-0">
         <div className="score-count d-flex flex-column justify-content-between">
           <div className="box d-flex flex-1 justify-content-center flex-column align-items-center">
-            <span className="title d-block">Advantage</span>
+            <span className="title d-block">
+              {t('adminControlMatch.participant.advantageText')}
+            </span>
             <span className="count d-block">{scores.advantage}</span>
           </div>
           <div className="box d-flex flex-1 justify-content-center flex-column align-items-center">
-            <span className="title d-block">Penalty</span>
+            <span className="title d-block">
+              {t('adminControlMatch.participant.penaltyText')}
+            </span>
             <span className="count d-block">{scores.penalties}</span>
           </div>
         </div>

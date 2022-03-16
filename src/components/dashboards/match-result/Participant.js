@@ -2,6 +2,7 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import ReactCountryFlag from 'react-country-flag';
+import { useTranslation } from 'react-i18next';
 
 const Participant = ({
   participantData,
@@ -10,11 +11,14 @@ const Participant = ({
   cardColor,
   method
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Col xs="auto d-flex align-items-center flex-1">
         <div className="align-items-start d-flex flex-column">
-          {winner && <strong className="winner-flag">Winner</strong>}
+          {winner && (
+            <strong className="winner-flag">{t('matchResults.winner')}</strong>
+          )}
           <div className="d-flex">
             <div className="country-info d-flex flex-column">
               <span className="flag d-flex">
@@ -28,21 +32,31 @@ const Participant = ({
 
               {winner && method && (
                 <span className="academy-name d-block text-uppercase">
-                  Winner By {method}
+                  {t('matchResults.winnerBy')} {method}
                 </span>
               )}
             </div>
           </div>
         </div>
-      </Col>
-      <Col xs="auto" className="justify-content-end d-flex p-0">
-        <div className="score-count d-flex flex-column justify-content-between">
+        <div className="score-count d-flex justify-content-between mt-3 visible-tablet">
           <div className="box d-flex flex-1 justify-content-center flex-column align-items-center">
-            <span className="title d-block">Advantage</span>
+            <span className="title d-block">{t('matchResults.advantage')}</span>
             <span className="count d-block">{result.advantage}</span>
           </div>
           <div className="box d-flex flex-1 justify-content-center flex-column align-items-center">
-            <span className="title d-block">Penalty</span>
+            <span className="title d-block">{t('matchResults.penalty')}</span>
+            <span className="count d-block">{result.penaty}</span>
+          </div>
+        </div>
+      </Col>
+      <Col xs="auto" className="justify-content-end d-flex p-0">
+        <div className="score-count d-flex flex-column justify-content-between hidden-tablet">
+          <div className="box d-flex flex-1 justify-content-center flex-column align-items-center">
+            <span className="title d-block">{t('matchResults.advantage')}</span>
+            <span className="count d-block">{result.advantage}</span>
+          </div>
+          <div className="box d-flex flex-1 justify-content-center flex-column align-items-center">
+            <span className="title d-block">{t('matchResults.penalty')}</span>
             <span className="count d-block">{result.penaty}</span>
           </div>
         </div>

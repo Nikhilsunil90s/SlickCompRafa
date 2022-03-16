@@ -1,0 +1,412 @@
+{
+  "navbarTitle": "Idioma",
+  "freeEventText": "Crea tu primer evento gratis",
+  "heroText": "EL MEJOR SOFTWARE DE TORNEO DE BJJ DEL MUNDO PARA DEPORTES DE COMBATE",
+  "heroBtn": "Comienza a crear tu evento",
+  "heroMajorText": {
+    "part1": "Traiga",
+    "part2": "a su Torneo"
+  },
+  "logoutText": "Cerrar Sesión",
+  "serviceSectionTitle": "Esto es lo que hay para ti",
+  "serviceSectionSubTitle": "Cosas que sacará de la caja con SLICKCOMP.",
+  "serviceListMediaAlt1": "HORARIO DE FUNCIONAMIENTO",
+  "serviceListTitle1": "HORARIO DE FUNCIONAMIENTO",
+  "serviceDesc1": "Manténgase actualizado todo el tiempo..",
+  "forgetPassword": {
+    "sendResetLink": "Enviar enlace de reinicio",
+    "forgotYourPassword": "Olvidaste tu contraseña",
+    "resetYourPassword": "Restablecer nueva contraseña",
+    "emailLabel": "Ingrese su correo electrónico y le enviaremos un enlace de reinicio.",
+    "emailInput": "Dirección de correo electrónico",
+    "successToastMessageBefore": "Se envía un correo electrónico a ",
+    "successToastMessageAfter": "con enlace de restablecimiento de contraseña",
+    "failedToastMessageBefore": "Restablecimiento de contraseña para ",
+    "failedToastMessageAfter": "fallida",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "setPassword": "Configurar la clave",
+    "newPasswordSuccessMessage": "Inicie sesión con su nueva contraseña",
+    "newPasswordErroMessage": "Error al restablecer la contraseña, inténtalo de nuevo",
+    "passwordRequired": "¡Se requiere contraseña!",
+    "passwordMatch": "Las contraseñas deben coincidir",
+    "passwordLimit": "Debe contener 8 caracteres, uno en mayúscula, uno en minúscula y un número"
+  },
+  "services": [
+    {
+      "media": {
+        "path": "21",
+        "alt": "HORARIO DE FUNCIONAMIENTO"
+      },
+      "title": "HORARIO DE FUNCIONAMIENTO",
+      "description": "Manténgase actualizado todo el tiempo.."
+    },
+    {
+      "media": {
+        "path": "22",
+        "alt": "GENERACIÓN DE SOPORTES"
+      },
+      "title": "GENERACIÓN DE SOPORTES",
+      "description": "Generaremos ese soporte para usted."
+    },
+    {
+      "media": {
+        "path": "23",
+        "alt": "MARCADOR"
+      },
+      "title": "MARCADOR",
+      "description": "Marcadores que realmente funcionan."
+    }
+  ],
+  "ctaMajor": "Únete a nuestra comunidad de competidores.",
+  "ctaBtn": "Empieza tu torneo",
+  "footerTitles": {
+    "title1": "Nuestra Misión",
+    "title2": "Compañía",
+    "title3": "Producto",
+    "title4": "Desde El Blog"
+  },
+  "footerNote": "La misión de SLICKCOMP es proporcionar un mecanismo completo y fácil de usar para su competencia.",
+  "footerEnd": "Gracias por visitar SLICKCOMP",
+  "menuList1": [
+    {
+      "title": "Sobre Nosotros",
+      "to": "#!"
+    },
+    {
+      "title": "Contacto",
+      "to": "#!"
+    },
+    {
+      "title": "Carreras",
+      "to": "#!"
+    },
+    {
+      "title": "Blog",
+      "to": "#!"
+    },
+    {
+      "title": "Condiciones",
+      "to": "#!"
+    },
+    {
+      "title": "Intimidad",
+      "to": "#!"
+    },
+    {
+      "title": "Imprimir",
+      "to": "#!"
+    }
+  ],
+  "menuList2": [
+    {
+      "title": "Características",
+      "to": "#!"
+    },
+    {
+      "title": "Mapa Vial",
+      "to": "#!"
+    },
+    {
+      "title": "Registro de Cambios",
+      "to": "#!"
+    },
+    {
+      "title": "Precios",
+      "to": "#!"
+    },
+    {
+      "title": "Documentos",
+      "to": "#!"
+    },
+    {
+      "title": "Estado del Sistema",
+      "to": "#!"
+    },
+    {
+      "title": "Agencias",
+      "to": "#!"
+    },
+    {
+      "title": "Empresa",
+      "to": "#!"
+    }
+  ],
+  "blogPostList": [
+    {
+      "title": "Gráficos y Tablas Interactivos",
+      "date": "15 de Enero",
+      "read": "8 minutos de lectura"
+    },
+    {
+      "title": "Actualizaciones Gratuitas de por Vida",
+      "date": "15 de Enero",
+      "read": "3 minutos de lectura",
+      "star": true
+    },
+    {
+      "title": "Feliz Navidad de Nosotros",
+      "date": "25 de Diciembre",
+      "read": "2 minutos de lectura"
+    },
+    {
+      "title": "El nuevo tema del Halcón",
+      "date": "23 de Diciembre",
+      "read": "10 minutos de lectura"
+    }
+  ],
+  "landingRightSideNavItems": {
+    "loginTitle": "Iniciar Sesión",
+    "registerTitle": "Registrarse",
+    "dashboardTitle": "Tablero de Mandos",
+    "tab1Item": "Academia",
+    "tab2Item": "Atleta"
+  },
+  "academyLoginForm": {
+    "fieldLabel1": "Correo Electrónico",
+    "fieldLabel2": "Contraseña",
+    "fieldCheckBox": "Recuérdame",
+    "forgetPassword": "Contraseña Olvidada ?",
+    "loginButton": "Iniciar Sesión",
+    "loginOptions": "o Iniciar Sesión con"
+  },
+  "athleteLoginForm": {
+    "fieldLabel1": "Correo Electrónico",
+    "fieldLabel2": "Contraseña",
+    "fieldCheckBox": "Recuérdame",
+    "forgetPassword": "Contraseña Olvidada ?",
+    "loginButton": "Iniciar Sesión",
+    "loginOptions": "o Iniciar Sesión con"
+  },
+  "academyDashboardMenuItems": {
+    "label": "Tablero de Mandos",
+    "labelDisable": true,
+    "children": [
+      {
+        "name": "Menú",
+        "active": true,
+        "icon": "chart-pie",
+        "children": [
+          {
+            "name": "Perfil",
+            "to": "/dashboard/profile",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Partidos",
+            "to": "/dashboard/matches",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Crear un Partido",
+            "to": "/dashboard/create-match",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Usuarios",
+            "to": "/dashboard/users",
+            "exact": true,
+            "active": true
+          },
+          {
+            "name": "Invitar Usuario",
+            "to": "/dashboard/invite-user",
+            "exact": true,
+            "active": true
+          }
+        ]
+      }
+    ]
+  },
+  "fighterDashboardMenuItems": {
+    "label": "Tablero de Mandos",
+    "labelDisable": true,
+    "children": [
+      {
+        "name": "Menú",
+        "active": true,
+        "icon": "chart-pie",
+        "children": [
+          {
+            "name": "Perfil",
+            "to": "/dashboard/profile",
+            "exact": true,
+            "active": true
+          }
+        ]
+      }
+    ]
+  },
+  "createMatch": {
+    "fieldLabel1": "Participante 1",
+    "fieldPlaceholder1": "Seleccione Participante",
+    "fieldLabel2": "Participante 2",
+    "fieldPlaceholder2": "Seleccione Participante",
+    "fieldLabel3": "Tipo de Partido",
+    "fieldMatchValue1": "Partido único",
+    "fieldMatchValue2": "Cuartos de final",
+    "fieldMatchValue3": "Semifinales",
+    "fieldMatchValue4": "Final",
+    "fieldLabel4": "Género",
+    "fieldGenderValue1": "Masculino",
+    "fieldGenderValue2": "Femenino",
+    "fieldLabel5": "Antigüedad",
+    "fieldSeniorityValue1": "Adulto",
+    "fieldLabel6": "Peso",
+    "fieldLabel7": "Duración",
+    "fieldPlaceholder7": "Seleccione la duración",
+    "fieldLabel8": "Fecha",
+    "matchButton": "Crear Partido",
+    "successToast": "Partido Creado",
+    "errorToast": "Falló la creación de partido, inténtelo de nuevo"
+  },
+  "inviteUser": {
+    "heading": "Invitar Usuario",
+    "inviteFormLabel1": "Nombre",
+    "inviteFormPlaceholder1": "Nombre",
+    "inviteFormLabel2": "Email",
+    "inviteFormPlaceholder2": "Email",
+    "inviteFormLabel3": "Mensaje",
+    "inviteFormPlaceholder3": "Introduzca su mensaje aquí ...",
+    "inviteButton": "ENVIAR",
+    "error1": "Se requiere el nombre!",
+    "error2": "Se requiere correo electrónico válido!",
+    "error3": "Correo electronico es requerido!",
+    "toastSuccess": "Invitación enviada con éxito!",
+    "toastError": "Invitación fallida, inténtalo de nuevo."
+  },
+  "toolTipLight": "Cambiar a tema Claro",
+  "toolTipDark": "Cambiar a tema Oscuro",
+  "matchesColumns": {
+    "column1": "Id de Partido",
+    "column2": "Participantes",
+    "column3": "Detalles",
+    "column4": "Fecha",
+    "column5": "Acción",
+    "action1": "Ver Resultados",
+    "action2": "Comienzo"
+  },
+  "usersColumns": {
+    "column1": "Id de Usuario",
+    "column2": "Nombre",
+    "column3": "Email",
+    "column4": "País"
+  },
+  "tableFooterText": {
+    "to": "a",
+    "of": "de",
+    "pagination": "Filas por Página: ",
+    "next": "Próximo",
+    "previous": "Previo"
+  },
+  "logoutContent": {
+    "title": "Hasta Luego!",
+    "content1": "Gracias por usar SlickComp. Ahora ha",
+    "content2": "cerrado la sesión con éxito.",
+    "button": "Ve a la página principal"
+  },
+  "dontRefreshPopUp": {
+    "head1": "No actualice la página o se perderán todos los datos",
+    "head2": "Mientras se ejecuta el partido, asegúrese de no actualizar la página"
+  },
+  "matchResults": {
+    "pageTitle": "Resultado del partido",
+    "winner": "Ganador",
+    "winnerBy": "Ganador Por",
+    "advantage": "Ventaja",
+    "penalty": "Multa",
+    "videosTitle": "Galeria",
+    "methods": {
+      "disqualificationesp": "Descalificación",
+      "pointsesp": "Puntos"
+    },
+    "duration": "Duración",
+    "matchType": "Tipo de concordancia",
+    "matchGender": "Género",
+    "giNogi": "Gi / NoGi",
+    "seniority": "Antigüedad",
+    "weight": "Peso",
+    "endTime": "Fecha de finalización del partido"
+  },
+  "adminControlMatch": {
+    "adminControl": {
+      "buttonText1": "DESHACER acción de puntuación",
+      "buttonText2": "Cambio de lados",
+      "buttonText3": "volver al balde",
+      "buttonText4": "volver al orden de lucha",
+      "buttonText5a": "empezar juego",
+      "buttonText5b": "juego final",
+      "buttonText6": "atrás"
+    },
+    "adminMatchResult": {
+      "buttonText1": "Guardar",
+      "buttonText2": "Atrás",
+      "buttonText3": "volver al orden de lucha",
+      "buttonText4": "volver al balde"
+    },
+    "participantControl": {
+      "buttonText": "ESTANCAMIENTO"
+    },
+    "participantMatchResult": {
+      "title": "Ganado Por: ",
+      "buttonText1": "puntos",
+      "buttonText2": "sumisión",
+      "buttonText3": "descalificación",
+      "buttonText4": "triunfo fácil",
+      "buttonText5": "decisión"
+    },
+    "participant": {
+      "winnerByText": "Ganador por",
+      "advantageText": "Ventaja",
+      "penaltyText": "Multa"
+    },
+    "scoreCard": {
+      "promptText": "Quieres guardar?",
+      "promptYes": "Sí",
+      "promptNo": "No"
+    }
+  },
+  "matchesHeader": {
+    "lastMatches": "Últimos partidos",
+    "seeAll": "ver todo"
+  },
+  "profile": {
+    "memberSince": "Miembro desde",
+    "age": "Envejecer",
+    "belt": "cinturón",
+    "weight": "Peso",
+    "academy": "Academia",
+    "complete": "Completa",
+    "editProfile": "Editar perfil",
+    "beltItems": {
+      "item1": "Blanca",
+      "item2": "Azul",
+      "item3": "Morada",
+      "item4": "Cafe",
+      "item5": "Negra"
+    },
+    "academyForm": {
+      "successToast": "Perfil de la academia actualizado con éxito.",
+      "errorToast": "Perfil de la academia no actualizado.",
+      "name": "Nombre",
+      "intro": "Introducción",
+      "instagram": "Instagram",
+      "buttonText": "Actualizar"
+    },
+    "userForm": {
+      "successToast": "Perfil de la academia actualizado con éxito.",
+      "errorToast": "Perfil de la academia no actualizado.",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "weight": "Peso",
+      "belt": "Cinturón",
+      "age": "Años",
+      "country": "Nombre del país",
+      "instagram": "Instagram",
+      "buttonText": "Actualizar"
+    }
+  }
+}

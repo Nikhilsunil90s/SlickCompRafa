@@ -9,8 +9,11 @@ import Footer from './Footer';
 import { Row } from 'react-bootstrap';
 import DonotRefresh from 'components/Alerts/DonotRefresh';
 import Prompt from 'components/Alerts/Prompt';
+import { useTranslation } from 'react-i18next';
 
 const ScoreCard = ({ match }) => {
+  const { t } = useTranslation();
+
   const [participant1Score, setP1score] = useState({
     participant: 1,
     advantage: 0,
@@ -30,9 +33,15 @@ const ScoreCard = ({ match }) => {
   const [savePrompt, setSavePrompt] = useState(false);
   const [time, setTime] = useState(300);
   const timeRef = useRef();
-  timeRef.current = time;
+  const [matchTime, setMatchTime] = useState(0);
+  const matchTimeRef = useRef();
+  matchTimeRef.current = matchTime;
   const [data, setData] = useState(null);
   const [isStarted, setStarted] = useState(false);
+  const [isReady, setReady] = useState(false);
+  const [isStopped, setStopped] = useState(false);
+  const stopped = useRef();
+  stopped.current = isStopped;
   const [isEnded, setEnded] = useState(false);
   const [endedAt, setEndedAt] = useState(null);
   const [isWon, setWon] = useState(false);
@@ -56,6 +65,7 @@ const ScoreCard = ({ match }) => {
       participant: response.participant2.id
     }));
     setTime(response.duration || 300);
+    setMatchTime(0);
     setData(response);
     return response;
   };
@@ -118,19 +128,35 @@ const ScoreCard = ({ match }) => {
       timeToAdd + currentTime < 0 ? 0 : timeToAdd + currentTime
     );
   };
+  const onReady = () => {
+    setReady(true);
+  };
   const onStart = () => {
     setStarted(true);
     setIntervalId(
       setInterval(() => {
         console.log(timeRef.current);
+        if (stopped.current) {
+          return;
+        }
         if (timeRef.current === 0) {
           onEnd();
           return;
         }
+        setMatchTime(matchTime => matchTime + 1);
         setTime(currentTime => (currentTime < 0 ? 0 : currentTime - 1));
       }, 1000)
     );
   };
+  const onStop = time => {
+    setTime(time);
+    setStopped(true);
+  };
+  const onResume = time => {
+    setTime(time);
+    setStopped(false);
+  };
+
   const onEnd = () => {
     setEnded(true);
     setEndedAt(moment().format('YYYY-MM-DD HH:mm:ss'));
@@ -209,7 +235,8 @@ const ScoreCard = ({ match }) => {
           points: loser.points,
           advantage: loser.advantage,
           penaty: loser.penalties
-        }
+        },
+        matchDuration: matchTimeRef.current
       }
     });
     matchAdmin.close();
@@ -225,14 +252,18 @@ const ScoreCard = ({ match }) => {
       matchAdmin.onAdvantageUpdate(handleAdvantageUpdate);
       matchAdmin.onPenaltyUpdate(handlePenaltyUpdate);
       matchAdmin.onTimerUpdate(handleTimerUpdate);
+      matchAdmin.onReady(onReady);
       matchAdmin.onStart(onStart);
       matchAdmin.onEnd(onEnd);
       matchAdmin.onWin(onWin);
+      matchAdmin.onStop(onStop);
+      matchAdmin.onResume(onResume);
       matchAdmin.onClose(() => (window.location.href = '/dashboard/matches'));
       await matchAdmin.init();
     })();
     return () => clearInterval(intervalRef.current);
   }, []);
+
   return (
     <>
       <Section className="score-card light d-flex">
@@ -241,7 +272,7 @@ const ScoreCard = ({ match }) => {
             <>
               {savePrompt && (
                 <Prompt
-                  prompt={'Do you want to save?'}
+                  prompt={t('adminControlMatch.scoreCard.promptText')}
                   onYes={onSaveYes}
                   onNo={onSaveNo}
                 />
@@ -302,6 +333,10 @@ const ScoreCard = ({ match }) => {
                   onFinalBack={onFinalBack}
                   isEnded={isEnded}
                   isWon={isWon}
+                  isReady={isReady}
+                  isStopped={isStopped}
+                  onResume={() => matchAdmin.resumeMatch(time)}
+                  onStop={() => matchAdmin.stopMatch(time)}
                   onSave={onSave}
                   proceedTimer={matchAdmin.addToTimer}
                   penalizeTimer={matchAdmin.subtractFromTimer}

@@ -1,12 +1,13 @@
 import classNames from 'classnames';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Navbar } from 'react-bootstrap';
 import handleNavbarTransparency from 'helpers/handleNavbarTransparency';
 //import NavbarTopDropDownMenus from 'components/navbar/top/NavbarTopDropDownMenus';
 import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from 'config';
 import AppContext from 'context/Context';
+import LanguageBar from '../../../helpers/languageBar';
 
 const NavbarStandard = () => {
   const {
@@ -33,12 +34,15 @@ const NavbarStandard = () => {
         <Navbar.Brand className="text-white dark__text-white" as={Link} to="/">
           SLICKCOMP
         </Navbar.Brand>
-        <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
+        <div className="d-flex justify-content-between language-holder">
+          <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
+          <div className="language-changer">
+            <LanguageBar />
+          </div>
+        </div>
         <Navbar.Collapse className="scrollbar">
-          <Nav>
-            {/*<NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />*/}
-          </Nav>
           <LandingRightSideNavItem />
+          <LanguageBar />
         </Navbar.Collapse>
       </Container>
     </Navbar>

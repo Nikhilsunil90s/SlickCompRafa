@@ -1,78 +1,121 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import AdvanceTable from 'components/common/advance-table/AdvanceTable';
 import AdvanceTableFooter from 'components/common/advance-table/AdvanceTableFooter';
 import AdvanceTableWrapper from 'components/common/advance-table/AdvanceTableWrapper';
-import { getMatches } from 'api/match';
-import { Link } from 'react-router-dom';
+import { useGetMatchesQuery } from 'api/match';
+import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
+import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const columns = [
-  {
-    accessor: 'matchId',
-    Header: 'Match Id'
-  },
-  {
-    accessor: 'participants',
-    Header: 'Participants',
-    Cell: rowData => {
-      const { participant1, participant2 } = rowData.row.original;
-      return (
-        <>
-          {participant1.name} VS {participant2.name}
-        </>
-      );
-    }
-  },
-  {
-    accessor: 'details',
-    Header: 'Details',
-    Cell: rowData => {
-      const { matchType, matchGender, giNogi, seniority, weight, duration } =
-        rowData.row.original;
-      return (
-        <>
-          {matchType}
-          {matchGender && ` / ${matchGender}`}
-          {(giNogi || giNogi === 0) && ` / ${giNogi === 1 ? 'Gi' : 'NoGi'}`}
-          {seniority && ` / ${seniority}`}
-          {weight && ` / ${weight}`}
-          {duration && ` / ${duration}`}
-        </>
-      );
-    }
-  },
-  {
-    accessor: 'action',
-    Header: 'Action',
-    Cell: rowData => {
-      const { matchId, matchEndtime, academyId } = rowData.row.original;
-      return (
-        <>
-          {matchEndtime ? (
-            <Link to={`/dashboard/match-result/${academyId}/${matchId}`}>
-              See Results
-            </Link>
-          ) : (
-            <Link to={`/control-match/${academyId}/${matchId}`}>Start</Link>
-          )}
-        </>
-      );
-    }
-  }
-];
+const getMatchDuration = duration => {
+  return moment.utc(parseInt(duration) * 1000).format('mm:ss');
+};
 
 const mapStateToProp = state => ({
   academyId: state.auth.academyId
 });
 const Matches = ({ academyId }) => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const matches = await getMatches(academyId);
-      setData(matches);
-    })();
-  }, []);
+  const { t } = useTranslation();
+  const columns = [
+    {
+      accessor: 'matchId',
+      Header: t('matchesColumns.column1')
+    },
+    {
+      accessor: 'participants',
+      Header: t('matchesColumns.column2'),
+      Cell: rowData => {
+        const { participant1, participant2 } = rowData.row.original;
+        return (
+          <>
+            {participant1.name} VS {participant2.name}
+          </>
+        );
+      }
+    },
+    {
+      accessor: 'details',
+      Header: t('matchesColumns.column3'),
+      Cell: rowData => {
+        const { matchType, matchGender, giNogi, seniority, weight, duration } =
+          rowData.row.original;
+        return (
+          <>
+            {matchType}
+            {matchGender && ` / ${matchGender}`}
+            {(giNogi || giNogi === 0) && ` / ${giNogi === 1 ? 'Gi' : 'NoGi'}`}
+            {seniority && ` / ${seniority}`}
+            {weight && ` / ${weight}`}
+            {duration && ` / ${getMatchDuration(duration)}`}
+          </>
+        );
+      }
+    },
+    {
+      accessor: 'date',
+      Header: t('matchesColumns.column4'),
+      Cell: rowData => {
+        const { matchDatetime } = rowData.row.original;
+        return (
+          <>{matchDatetime && moment(matchDatetime).format('MM-DD-YYYY')}</>
+        );
+      }
+    },
+    {
+      accessor: 'action',
+      Header: t('matchesColumns.column5'),
+      Cell: rowData => {
+        const { matchId, matchEndtime } = rowData.row.original;
+        return (
+          <>
+            {matchEndtime ? (
+              <Link
+                className="btn-view"
+                to={`/dashboard/match-result/${academyId}/${matchId}`}
+              >
+                <FontAwesomeIcon icon={['fas', 'eye']} />
+              </Link>
+            ) : (
+              <Link
+                className="btn-play"
+                to={`/control-match/${academyId}/${matchId}`}
+              >
+                <FontAwesomeIcon icon={['fas', 'play']} />
+              </Link>
+            )}
+          </>
+        );
+      }
+    }
+  ];
+  // const [data, setData] = useState([]);
+  const { data, error, isLoading } = useGetMatchesQuery(academyId, {
+    refetchOnMountOrArgChange: true
+  });
+  const { userId } = useParams();
+  // useEffect(() => {
+  //   if (!matches.length) {
+  //     (async () => {
+  //       const matches = await getMatches(academyId);
+  //       if (userId) {
+  //         const userMatches = matches.filter(match => {
+  //           return (
+  //             (match.participant1.id == userId ||
+  //               match.participant2.id == userId) &&
+  //             match.matchEndtime !== null
+  //           );
+  //         });
+  //         setData(userMatches);
+  //       } else {
+  //         setData(matches);
+  //       }
+  //     })();
+  //   }
+  // }, []);
   return (
     <>
       <AdvanceTableWrapper
@@ -80,7 +123,7 @@ const Matches = ({ academyId }) => {
         data={data || []}
         sortable
         pagination
-        perPage={5}
+        perPage={10}
       >
         <AdvanceTable
           table
@@ -105,4 +148,5 @@ const Matches = ({ academyId }) => {
     </>
   );
 };
+
 export default connect(mapStateToProp)(Matches);

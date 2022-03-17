@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 import ReactCountryFlag from 'react-country-flag';
-import TableSearch from 'components/table-search-box/TableSearch';
+import TableSearch from '../../../components/pages/table-search-box/TableSearch';
 
 const mapStateToProp = state => ({
   academyId: state.auth.academyId
@@ -64,26 +64,27 @@ const Users = ({ academyId }) => {
     }
   ];
   const [data, setData] = useState([]);
+  const [mapData, setMapData] = useState([]);
  useEffect(()=>{
    (async()=>{
     const users = await  getUsers(academyId);
-    setData(users)  
+    await setData(users)  
+    await setMapData(users)
    })();
  },[])
-    
   useEffect(() => {
-    if(!data)return
+    if(!mapData)return
     (async () => {
-      setData(data);
+      await setMapData(mapData);
     })();
-  }, [data]);
+  }, [mapData]);
 
   return (
     <>
-     <TableSearch Data={data} setData={setData} />   
+     <TableSearch Data={data} setData={setMapData} />   
       <AdvanceTableWrapper
         columns={columns}
-        data={data || []}
+        data={mapData || []}
         sortable
         pagination
         perPage={10}
@@ -100,7 +101,7 @@ const Users = ({ academyId }) => {
         />
         <div className="mt-3">
           <AdvanceTableFooter
-            rowCount={data ? data.length : 0}
+            rowCount={mapData ? mapData.length : 0}
             table
             rowInfo
             navButtons

@@ -2,19 +2,32 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Form, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FalconCloseButton from 'components/common/FalconCloseButton';
+import moment from 'moment';
 
-const TableSearch = ({ Data, setData }) => {
+const TableSearch = ({ Data, setData, type }) => {
   const [searchInputValue, setSearchInputValue] = useState('');
+
   const filterFun = async (value) => {
     let arr = [];
     Data.map((el, ind) => {
-      if (
-        JSON.stringify(el)
-          .toLocaleLowerCase()
-          .includes(value.toLocaleLowerCase())
+    
+      if(type==="matches"){
+      if (JSON.stringify(el)
+      .toLocaleLowerCase()
+      .includes(value.toLocaleLowerCase())||
+        moment(el.matchDatetime).format('MM-DD-YYYY').includes(value)
       ) {
         console.log(JSON.stringify(el).includes(value));
         arr.push(el);
+      }}
+      else{
+        if (JSON.stringify(el)
+        .toLocaleLowerCase()
+        .includes(value.toLocaleLowerCase())
+        ) {
+          console.log(JSON.stringify(el).includes(value));
+          arr.push(el);
+        }
       }
     });
     await setData(arr);

@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import TableSearch from 'components/table-search-box/TableSearch';
+import TableSearch from '../../../components/pages/table-search-box/TableSearch';
 
 const getMatchDuration = duration => {
   return moment.utc(parseInt(duration) * 1000).format('mm:ss');
@@ -125,7 +125,7 @@ setData(data)
   // }, []);
   return (
     <>
-    <TableSearch Data={data} setData={setData} />
+    <TableSearch Data={data} setData={setData} type="matches" />
       <AdvanceTableWrapper
         columns={columns}
         data={FilterData || []}

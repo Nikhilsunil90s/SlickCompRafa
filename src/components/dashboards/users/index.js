@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 import ReactCountryFlag from 'react-country-flag';
+import TableSearch from 'components/table-search-box/TableSearch';
 
 const mapStateToProp = state => ({
   academyId: state.auth.academyId
@@ -63,14 +64,23 @@ const Users = ({ academyId }) => {
     }
   ];
   const [data, setData] = useState([]);
+ useEffect(()=>{
+   (async()=>{
+    const users = await  getUsers(academyId);
+    setData(users)  
+   })();
+ },[])
+    
   useEffect(() => {
+    if(!data)return
     (async () => {
-      const users = await getUsers(academyId);
-      setData(users);
+      setData(data);
     })();
-  }, []);
+  }, [data]);
+
   return (
     <>
+     <TableSearch Data={data} setData={setData} />   
       <AdvanceTableWrapper
         columns={columns}
         data={data || []}

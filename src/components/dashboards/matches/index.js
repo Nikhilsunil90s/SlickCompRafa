@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TableSearch from 'components/table-search-box/TableSearch';
 
 const getMatchDuration = duration => {
   return moment.utc(parseInt(duration) * 1000).format('mm:ss');
@@ -19,6 +20,7 @@ const mapStateToProp = state => ({
   academyId: state.auth.academyId
 });
 const Matches = ({ academyId }) => {
+  const [FilterData,setData] =useState([])
   const { t } = useTranslation();
   const columns = [
     {
@@ -96,6 +98,11 @@ const Matches = ({ academyId }) => {
   const { data, error, isLoading } = useGetMatchesQuery(academyId, {
     refetchOnMountOrArgChange: true
   });
+  
+useEffect(()=>{
+if(!data)return
+setData(data)
+},[data])
   const { userId } = useParams();
   // useEffect(() => {
   //   if (!matches.length) {
@@ -118,9 +125,10 @@ const Matches = ({ academyId }) => {
   // }, []);
   return (
     <>
+    <TableSearch Data={data} setData={setData} />
       <AdvanceTableWrapper
         columns={columns}
-        data={data || []}
+        data={FilterData || []}
         sortable
         pagination
         perPage={10}
@@ -137,7 +145,7 @@ const Matches = ({ academyId }) => {
         />
         <div className="mt-3">
           <AdvanceTableFooter
-            rowCount={data ? data.length : 0}
+            rowCount={FilterData ? FilterData.length : 0}
             table
             rowInfo
             navButtons
